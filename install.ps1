@@ -10,7 +10,7 @@ $ErrorActionPreference = "Stop"
 
 Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host "  海鸥破甲智能体 - 安装向导" -ForegroundColor Cyan
-Write-Host "  Seagull Plugin for Codex / Codex++" -ForegroundColor Cyan
+Write-Host "  Seagull Plugin for Codex" -ForegroundColor Cyan
 Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -38,8 +38,8 @@ function Find-Codex {
 $Codex = Find-Codex
 if (-not $Codex) {
     Write-Host "[错误] 未找到 Codex CLI" -ForegroundColor Red
-    Write-Host "Codex++ 一般在: %LOCALAPPDATA%\OpenAI\Codex\bin\<hash>\codex.exe" -ForegroundColor Yellow
-    Write-Host "或先安装官方 CLI，再重跑本脚本。" -ForegroundColor Yellow
+    Write-Host "Windows 常见路径: %LOCALAPPDATA%\OpenAI\Codex\bin\<hash>\codex.exe" -ForegroundColor Yellow
+    Write-Host "或设置 CODEX_CLI_PATH 后重跑。" -ForegroundColor Yellow
     exit 1
 }
 
@@ -98,7 +98,7 @@ Write-Host "  安装完成！" -ForegroundColor Green
 Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "下一步：" -ForegroundColor Yellow
-Write-Host "  1. 重启 Codex / Codex++"
+Write-Host "  1. 重启 Codex"
 Write-Host "  2. 确认插件 seagull@codex-seagull 已启用"
 Write-Host "  3. 会话里执行 /hooks，信任 seagull 的 SessionStart / UserPromptSubmit"
 Write-Host "  4. 发送 '在吗' 激活"

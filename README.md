@@ -2,7 +2,7 @@
 
 **基于 Codex Plugin 的 CTF/Red-team/Reverse/Pentest 全域插件**
 
-> 通过插件式命令行安装，叠加在 Codex / Codex++ 之上，提供完整破甲能力。
+> 通过插件式命令行安装，叠加在 Codex 之上，提供完整破甲能力。
 >
 > 人格、技能与破甲栈 1:1 来自 [laoshu666/hermes-seagull](https://github.com/laoshu666/hermes-seagull) v1.1.0。使用前请阅读 [免责声明](./DISCLAIMER.md)。
 
@@ -47,7 +47,7 @@ chmod +x install.sh verify.sh
 
 ### 启动
 
-重启 Codex / Codex++。会话里执行 `/hooks`，信任 seagull 的 SessionStart / UserPromptSubmit。发送 **"在吗"** 激活海鸥破甲模式。
+重启 Codex。会话里执行 `/hooks`，信任 seagull 的 SessionStart / UserPromptSubmit。发送 **"在吗"** 激活海鸥破甲模式。
 
 ---
 
@@ -113,7 +113,7 @@ codex plugin add seagull@codex-seagull
 ## 🆘 问题排查
 
 **Q: 找不到 `codex` 命令？**  
-A: Codex++ 自带 CLI，路径一般是 `%LOCALAPPDATA%\OpenAI\Codex\bin\<hash>\codex.exe`。或设置 `CODEX_CLI_PATH` 后重跑 `install.ps1`。
+A: 安装 Codex CLI，或设置 `CODEX_CLI_PATH`。Windows 常见路径：`%LOCALAPPDATA%\OpenAI\Codex\bin\<hash>\codex.exe`。
 
 **Q: 如何确认安装成功？**  
 A: `codex plugin list` 能看到 `seagull@codex-seagull`。启动后发送 `在吗`，收到 `海鸥在线，你要整点薯条吗？` 即成功。

@@ -6,7 +6,7 @@
 codex-seagull/
 ├── .agents/plugins/marketplace.json   # Codex marketplace 清单
 ├── plugins/seagull/                   # 插件本体（PLUGIN_ROOT）
-│   ├── .codex-plugin/plugin.json      # Codex++ 26.928 兼容清单
+│   ├── .codex-plugin/plugin.json      # Codex plugin 清单
 │   ├── SOUL.md                        # 人格核心 + 破甲协议栈
 │   ├── AGENTS.md                      # 技能路由与执行指令
 │   ├── assets/                        # 插件图标

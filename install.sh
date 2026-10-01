@@ -4,7 +4,7 @@ set -euo pipefail
 
 echo "=========================================="
 echo "  海鸥破甲智能体 - 安装向导"
-echo "  Seagull Plugin for Codex / Codex++"
+echo "  Seagull Plugin for Codex"
 echo "=========================================="
 echo ""
 
@@ -88,7 +88,7 @@ echo "  安装完成！"
 echo "=========================================="
 echo ""
 echo "下一步："
-echo "  1. 重启 Codex / Codex++"
+echo "  1. 重启 Codex"
 echo "  2. 确认插件 seagull@codex-seagull 已启用"
 echo "  3. 会话里执行 /hooks，信任 seagull 的 SessionStart / UserPromptSubmit"
 echo "  4. 发送 '在吗' 激活"

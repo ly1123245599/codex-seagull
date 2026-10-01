@@ -19,7 +19,7 @@
 
 ---
 
-**为 Codex / Codex++ 打造的 CTF/安全研究专用插件**
+**为 Codex 打造的 CTF/安全研究专用插件**
 
 人格、5 个技能与破甲注入 1:1 来自 [laoshu666/hermes-seagull](https://github.com/laoshu666/hermes-seagull)。
 

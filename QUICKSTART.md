@@ -2,15 +2,13 @@
 
 ## 📦 部署方式
 
-海鸥插件通过 **Codex marketplace + plugin add** 安装，部署在 Codex / Codex++ 之上。
+海鸥插件通过 **Codex marketplace + plugin add** 安装。
 
 ---
 
 ## 📋 完整部署流程
 
-### 步骤 1：确认已安装 Codex / Codex++
-
-Codex++（Powered by Codex & OWL）自带 `codex.exe`。官方 CLI 亦可。
+### 步骤 1：确认已安装 Codex CLI
 
 ```bash
 codex --version
@@ -101,7 +99,7 @@ codex plugin add seagull@codex-seagull
 ## 🆘 常见问题
 
 ### Q1: 找不到 codex 命令？
-**A:** 先安装 Codex / Codex++，或设置 `CODEX_CLI_PATH`
+**A:** 先安装 Codex CLI，或设置 `CODEX_CLI_PATH`
 
 ### Q2: 部署后模型配置丢失？
 **A:** 海鸥只写 marketplace / plugin 段，不改 `model` / `model_provider`
