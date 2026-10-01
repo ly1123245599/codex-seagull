@@ -59,7 +59,7 @@ codex plugin marketplace add https://github.com/<OWNER>/codex-seagull && codex p
 /hooks
 ```
 
-信任 seagull 的 `SessionStart` / `UserPromptSubmit` / `PreToolUse`。然后重启会话。
+信任 seagull 的 `SessionStart` / `UserPromptSubmit`。然后重启会话。
 
 ---
 

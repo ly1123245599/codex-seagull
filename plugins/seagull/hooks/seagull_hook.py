@@ -2,12 +2,9 @@
 # -*- coding: utf-8 -*-
 """seagull-armor-break for Codex.
 
-Hermes v1.1.0 契约映射（本文件不发明新行为）：
-
-  pre_llm_call         -> UserPromptSubmit  (additionalContext)
-  profile SOUL/AGENTS  -> SessionStart      (additionalContext)
-  pre_tool_call        -> PreToolUse        (观察者，无输出)
-  transform_llm_output -> 无对等输出改写；问候只靠 UserPromptSubmit 特判指令
+  pre_llm_call         -> UserPromptSubmit
+  profile SOUL/AGENTS  -> SessionStart
+  transform_llm_output -> Codex 无输出改写；问候只靠 UserPromptSubmit 特判指令
 """
 from __future__ import annotations
 
@@ -162,10 +159,6 @@ def on_user_prompt_submit(event: dict) -> None:
     _emit(_context_payload("UserPromptSubmit", piece))
 
 
-def on_pre_tool_use(_event: dict) -> None:
-    return
-
-
 def main() -> int:
     if hasattr(sys.stdin, "reconfigure"):
         sys.stdin.reconfigure(encoding="utf-8")
@@ -179,8 +172,6 @@ def main() -> int:
         on_session_start(event)
     elif name == "UserPromptSubmit":
         on_user_prompt_submit(event)
-    elif name == "PreToolUse":
-        on_pre_tool_use(event)
     return 0
 
 

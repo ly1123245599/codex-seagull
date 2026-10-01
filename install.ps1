@@ -90,7 +90,7 @@ Write-Host ""
 Write-Host "下一步：" -ForegroundColor Yellow
 Write-Host "  1. 重启 Codex / Codex++"
 Write-Host "  2. 确认插件 seagull@codex-seagull 已启用"
-Write-Host "  3. 会话里执行 /hooks，信任 seagull 的 SessionStart / UserPromptSubmit / PreToolUse"
+Write-Host "  3. 会话里执行 /hooks，信任 seagull 的 SessionStart / UserPromptSubmit"
 Write-Host "  4. 发送 '在吗' 激活"
 Write-Host ""
 Write-Host "技能触发词：" -ForegroundColor Yellow

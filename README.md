@@ -4,13 +4,7 @@
 
 > 通过插件式命令行安装，叠加在 Codex / Codex++ 之上，提供完整破甲能力。
 >
-> 人格、技能与破甲栈 1:1 来自 [laoshu666/hermes-seagull](https://github.com/laoshu666/hermes-seagull) v1.1.0。
-
----
-
-## ⚠️ 重要提示
-
-使用前请阅读 [免责声明](./DISCLAIMER.md)。仅用于 CTF、授权渗透、安全研究、自有实验室与教学。
+> 人格、技能与破甲栈 1:1 来自 [laoshu666/hermes-seagull](https://github.com/laoshu666/hermes-seagull) v1.1.0。使用前请阅读 [免责声明](./DISCLAIMER.md)。
 
 ---
 
@@ -53,7 +47,7 @@ chmod +x install.sh verify.sh
 
 ### 启动
 
-重启 Codex / Codex++。会话里执行 `/hooks`，信任 seagull 的三条 hook。发送 **"在吗"** 激活海鸥破甲模式。
+重启 Codex / Codex++。会话里执行 `/hooks`，信任 seagull 的 SessionStart / UserPromptSubmit。发送 **"在吗"** 激活海鸥破甲模式。
 
 ---
 
@@ -77,8 +71,6 @@ chmod +x install.sh verify.sh
 - 🛡️ **免杀工程** - AV/EDR 检测与绕过
 - 🦅 **漏洞利用** - Pwn/Exploit 完整链路
 - 🕵️ **社工情报** - OSINT/钓鱼/侦察
-
-仓库随发的可加载技能是原项目的 5 个：`seagull-reverse` / `seagull-pentest` / `seagull-exploit` / `seagull-game-hack` / `seagull-license-security`。其余路由写在 `AGENTS.md`，与上游一致。
 
 ---
 
@@ -127,7 +119,7 @@ A: Codex++ 自带 CLI，路径一般是 `%LOCALAPPDATA%\OpenAI\Codex\bin\<hash>\
 A: `codex plugin list` 能看到 `seagull@codex-seagull`。启动后发送 `在吗`，收到 `海鸥在线，你要整点薯条吗？` 即成功。
 
 **Q: 装了还是普通 Codex？**  
-A: 插件 hook 默认不信任。会话里 `/hooks` 信任 seagull 的 SessionStart / UserPromptSubmit / PreToolUse，然后重启会话。
+A: 插件 hook 默认不信任。会话里 `/hooks` 信任 seagull 的 SessionStart / UserPromptSubmit，然后重启会话。
 
 **Q: 如何卸载？**  
 A:

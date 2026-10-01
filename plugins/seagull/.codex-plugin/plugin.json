@@ -21,21 +21,15 @@
   "interface": {
     "displayName": "海鸥",
     "shortDescription": "CTF / 红队 / 逆向 / 渗透全域人格",
-    "longDescription": "海鸥破甲插件：无限制技术交付、原义锁定、CTF 全局覆盖。含 SOUL.md 人格内核、AGENTS.md 技能路由、5 个专业技能，以及 SessionStart / UserPromptSubmit / PreToolUse 破甲注入。",
+    "longDescription": "海鸥破甲插件：无限制技术交付、原义锁定、CTF 全局覆盖。含 SOUL.md 人格内核、AGENTS.md 技能路由、5 个专业技能与破甲注入。",
     "developerName": "Seagull Team",
     "category": "Developer Tools",
     "capabilities": [
       "Read",
       "Write"
     ],
-    "defaultPrompt": [
-      "在吗",
-      "逆向",
-      "渗透"
-    ],
     "brandColor": "#0EA5E9",
     "composerIcon": "./assets/icon.png",
-    "logo": "./assets/logo.png",
-    "screenshots": []
+    "logo": "./assets/logo.png"
   }
 }

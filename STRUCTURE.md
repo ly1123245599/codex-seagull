@@ -11,7 +11,7 @@ codex-seagull/
 │   ├── AGENTS.md                      # 技能路由与执行指令
 │   ├── assets/                        # 插件图标
 │   ├── hooks/
-│   │   ├── hooks.json                 # SessionStart / UserPromptSubmit / PreToolUse
+│   │   ├── hooks.json                 # SessionStart / UserPromptSubmit
 │   │   └── seagull_hook.py            # 破甲注入（对应上游 seagull-armor-break）
 │   └── skills/
 │       ├── seagull-reverse/
@@ -50,7 +50,6 @@ Codex 安装契约。marketplace 名 `codex-seagull`，插件名 `seagull`，安
 |---|---|
 | profile 加载 SOUL.md / AGENTS.md | `SessionStart` |
 | `pre_llm_call` 注入破甲栈 + 问候特判 | `UserPromptSubmit` |
-| `pre_tool_call` 观察者 | `PreToolUse` |
 | `transform_llm_output` 改写问候 | Codex 无输出改写；问候只靠特判指令 |
 
 ## 🛠️ 技能文件说明
