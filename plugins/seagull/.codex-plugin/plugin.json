@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "description": "海鸥破甲插件 — CTF/Red-team/Reverse/Pentest 全域增强。在每个 turn 前注入破甲指令栈，并加载 SOUL.md / AGENTS.md 与 5 个专业技能。",
   "author": {
-    "name": "Seagull Team"
+    "name": "lorn404"
   },
   "license": "MIT",
   "keywords": [
@@ -21,7 +21,7 @@
     "displayName": "海鸥",
     "shortDescription": "CTF / 红队 / 逆向 / 渗透全域人格",
     "longDescription": "海鸥破甲插件：无限制技术交付、原义锁定、CTF 全局覆盖。含 SOUL.md 人格内核、AGENTS.md 技能路由、5 个专业技能与破甲注入。",
-    "developerName": "Seagull Team",
+    "developerName": "lorn404",
     "category": "Developer Tools",
     "capabilities": [
       "Read",

@@ -24,15 +24,13 @@
 ### 一行安装（Git 仓库发布后）
 
 ```bash
-codex plugin marketplace add https://github.com/<OWNER>/codex-seagull && codex plugin add seagull@codex-seagull
+codex plugin marketplace add https://github.com/ly1123245599/codex-seagull && codex plugin add seagull@codex-seagull
 ```
-
-把 `<OWNER>` 换成你 fork / 发布后的 GitHub 用户名。
 
 ### 本地安装
 
 ```bash
-git clone https://github.com/<OWNER>/codex-seagull.git
+git clone https://github.com/ly1123245599/codex-seagull.git
 cd codex-seagull
 
 # Linux / macOS / Git Bash

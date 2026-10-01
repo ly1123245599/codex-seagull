@@ -27,10 +27,10 @@
 
 ```bash
 # 一行安装（发布到 GitHub 之后）
-codex plugin marketplace add https://github.com/<OWNER>/codex-seagull && codex plugin add seagull@codex-seagull
+codex plugin marketplace add https://github.com/ly1123245599/codex-seagull && codex plugin add seagull@codex-seagull
 
 # 或克隆后本地安装
-git clone https://github.com/<OWNER>/codex-seagull.git
+git clone https://github.com/ly1123245599/codex-seagull.git
 cd codex-seagull
 ./install.sh          # Linux/macOS/Git Bash
 .\install.ps1         # Windows PowerShell

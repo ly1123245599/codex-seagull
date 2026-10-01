@@ -27,7 +27,7 @@ codex --version
 **一行（Git 发布后）：**
 
 ```bash
-codex plugin marketplace add https://github.com/<OWNER>/codex-seagull && codex plugin add seagull@codex-seagull
+codex plugin marketplace add https://github.com/ly1123245599/codex-seagull && codex plugin add seagull@codex-seagull
 ```
 
 **本地：**
