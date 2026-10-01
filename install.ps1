@@ -49,6 +49,16 @@ Write-Host "    路径: $Codex" -ForegroundColor Gray
 Write-Host "    版本: $CodexVersion" -ForegroundColor Gray
 Write-Host ""
 
+$py = Get-Command py -ErrorAction SilentlyContinue
+$python = Get-Command python -ErrorAction SilentlyContinue
+$python3 = Get-Command python3 -ErrorAction SilentlyContinue
+if (-not $py -and -not $python -and -not $python3) {
+    Write-Host "[错误] 未找到 Python 3。Windows 需要 py -3 或 python" -ForegroundColor Red
+    exit 1
+}
+Write-Host "[✓] Python 3 可用（hook 运行时需要）" -ForegroundColor Green
+Write-Host ""
+
 $MarketplaceJson = Join-Path $RepoRoot ".agents\plugins\marketplace.json"
 $PluginJson = Join-Path $RepoRoot "plugins\seagull\.codex-plugin\plugin.json"
 if (-not (Test-Path $MarketplaceJson) -or -not (Test-Path $PluginJson)) {

@@ -112,6 +112,7 @@ def _read_event() -> dict:
 def _emit(obj: dict) -> None:
     sys.stdout.write(json.dumps(obj, ensure_ascii=False))
     sys.stdout.write("\n")
+    sys.stdout.flush()
 
 
 def _context_payload(event_name: str, text: str) -> dict:

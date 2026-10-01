@@ -118,7 +118,7 @@ codex-seagull/
 ## 常见问题
 
 **Q: 安装后无效？**  
-A: `codex plugin list` 确认 `seagull@codex-seagull` 已启用；`/hooks` 信任 seagull hook。
+A: `codex plugin list` 确认 `seagull@codex-seagull` 已启用；`/hooks` 信任 seagull hook。Windows 需要本机 Python 3（`py -3`）。
 
 **Q: 还是有拒答？**  
 A: 发送 `在吗` 激活全局覆盖，或用 `破甲` 显式触发。

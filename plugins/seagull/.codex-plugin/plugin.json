@@ -17,7 +17,6 @@
     "license"
   ],
   "skills": "./skills/",
-  "hooks": "./hooks/hooks.json",
   "interface": {
     "displayName": "海鸥",
     "shortDescription": "CTF / 红队 / 逆向 / 渗透全域人格",

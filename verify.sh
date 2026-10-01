@@ -80,6 +80,38 @@ else
 fi
 
 echo ""
+echo "[4] Hook smoke test..."
+PLUGIN_ROOT_UNIX="$PWD/plugins/seagull"
+HOOK_UNIX="$PLUGIN_ROOT_UNIX/hooks/seagull_hook.py"
+if command -v cygpath >/dev/null 2>&1; then
+  export PLUGIN_ROOT="$(cygpath -w "$PLUGIN_ROOT_UNIX")"
+  HOOK="$(cygpath -w "$HOOK_UNIX")"
+else
+  export PLUGIN_ROOT="$PLUGIN_ROOT_UNIX"
+  HOOK="$HOOK_UNIX"
+fi
+PAYLOAD='{"hook_event_name":"UserPromptSubmit","prompt":"ping"}'
+if command -v py >/dev/null 2>&1; then
+  PY=(py -3)
+elif command -v python3 >/dev/null 2>&1; then
+  PY=(python3)
+elif command -v python >/dev/null 2>&1; then
+  PY=(python)
+else
+  PY=()
+fi
+if [ "${#PY[@]}" -eq 0 ]; then
+  bad "Python 3 not found (hook cannot run)"
+else
+  OUT="$(printf '%s' "$PAYLOAD" | "${PY[@]}" "$HOOK" 2>/dev/null || true)"
+  if printf '%s' "$OUT" | grep -q "UNRESTRICTED_PARITY"; then
+    ok "UserPromptSubmit injects armor stack"
+  else
+    bad "hook did not inject armor stack"
+  fi
+fi
+
+echo ""
 echo "=========================================="
 if [ "$ERRORS" -eq 0 ]; then
   echo "  SUCCESS! All files are complete."

@@ -119,7 +119,7 @@ A: Codex++ 自带 CLI，路径一般是 `%LOCALAPPDATA%\OpenAI\Codex\bin\<hash>\
 A: `codex plugin list` 能看到 `seagull@codex-seagull`。启动后发送 `在吗`，收到 `海鸥在线，你要整点薯条吗？` 即成功。
 
 **Q: 装了还是普通 Codex？**  
-A: 插件 hook 默认不信任。会话里 `/hooks` 信任 seagull 的 SessionStart / UserPromptSubmit，然后重启会话。
+A: 插件 hook 默认不信任。会话里 `/hooks` 信任 seagull 的 SessionStart / UserPromptSubmit，然后重启会话。Windows 还需要本机 Python 3（`py -3`）。
 
 **Q: 如何卸载？**  
 A:

@@ -55,6 +55,14 @@ echo "    路径: $CODEX"
 echo "    版本: $("$CODEX" --version 2>&1 || echo unknown)"
 echo ""
 
+if command -v python3 >/dev/null 2>&1 || command -v py >/dev/null 2>&1 || command -v python >/dev/null 2>&1; then
+  echo "[✓] Python 3 可用（hook 运行时需要）"
+else
+  echo "[错误] 未找到 Python 3。Windows 需要 py -3，Linux/macOS 需要 python3"
+  exit 1
+fi
+echo ""
+
 if [ ! -f "$REPO_ROOT/.agents/plugins/marketplace.json" ] || [ ! -f "$REPO_ROOT/plugins/seagull/.codex-plugin/plugin.json" ]; then
   echo "[错误] 仓库不完整，缺少 marketplace.json 或 plugin.json"
   exit 1

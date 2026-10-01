@@ -106,6 +106,35 @@ try {
         Write-Host "  [MISSING] marketplace.json invalid" -ForegroundColor Red
         $script:ERRORS++
     }
+
+    Write-Host ""
+    Write-Host "[4] Hook smoke test..." -ForegroundColor Yellow
+    $env:PLUGIN_ROOT = Join-Path $scriptPath "plugins\seagull"
+    $hookPy = Join-Path $env:PLUGIN_ROOT "hooks\seagull_hook.py"
+    $payload = '{"hook_event_name":"UserPromptSubmit","prompt":"ping"}'
+    $runner = Get-Command py -ErrorAction SilentlyContinue
+    $runnerArgs = @("-3", $hookPy)
+    if (-not $runner) {
+        $runner = Get-Command python -ErrorAction SilentlyContinue
+        $runnerArgs = @($hookPy)
+    }
+    if (-not $runner) {
+        $runner = Get-Command python3 -ErrorAction SilentlyContinue
+        $runnerArgs = @($hookPy)
+    }
+    if (-not $runner) {
+        Write-Host "  [MISSING] Python 3 not found (hook cannot run)" -ForegroundColor Red
+        $script:ERRORS++
+    } else {
+        $out = $payload | & $runner.Source @runnerArgs 2>$null
+        $text = if ($null -eq $out) { "" } else { [string]$out }
+        if ($text.IndexOf("UNRESTRICTED_PARITY") -ge 0) {
+            Write-Host "  [OK] UserPromptSubmit injects armor stack" -ForegroundColor Green
+        } else {
+            Write-Host "  [MISSING] hook did not inject armor stack" -ForegroundColor Red
+            $script:ERRORS++
+        }
+    }
 } catch {
     Write-Host "  [ERROR] Failed to read files: $_" -ForegroundColor Red
     $script:ERRORS++
