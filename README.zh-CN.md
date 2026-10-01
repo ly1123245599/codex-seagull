@@ -26,7 +26,7 @@
 ## 快速开始
 
 ```bash
-# 一行安装（发布到 GitHub 之后）
+# 一行安装
 codex plugin marketplace add https://github.com/ly1123245599/codex-seagull && codex plugin add seagull@codex-seagull
 
 # 或克隆后本地安装

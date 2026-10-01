@@ -24,7 +24,7 @@ codex --version
 
 ### 步骤 2：部署海鸥插件
 
-**一行（Git 发布后）：**
+**一行：**
 
 ```bash
 codex plugin marketplace add https://github.com/ly1123245599/codex-seagull && codex plugin add seagull@codex-seagull

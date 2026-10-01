@@ -1,8 +1,5 @@
 # Git 忽略文件
 
-# 敏感信息（包含 Token 的脚本）
-push-to-github.ps1
-
 # Python
 __pycache__/
 *.py[cod]

@@ -21,7 +21,7 @@
 
 ## 🚀 快速部署
 
-### 一行安装（Git 仓库发布后）
+### 一行安装
 
 ```bash
 codex plugin marketplace add https://github.com/ly1123245599/codex-seagull && codex plugin add seagull@codex-seagull
@@ -58,17 +58,15 @@ chmod +x install.sh verify.sh
 - ⚡ 强制开工协议
 - 🎯 双用场景路由
 
-### 专业技能
+### 专业技能（随发 5 个 SKILL.md）
 
-- 🎯 **CTF 全速** - 自动判题+完整 Solve
-- 🔍 **逆向工程** - IDA/Ghidra/Frida 全栈
-- 🌐 **渗透测试** - Web/内网/云/AD 完整链路
-- 🎮 **游戏安全** - 外挂/反作弊/内存工程
-- 💻 **内存工程** - 进程/Dump/运行时分析
-- 🔐 **卡密安全** - 授权验证链恢复
-- 🛡️ **免杀工程** - AV/EDR 检测与绕过
-- 🦅 **漏洞利用** - Pwn/Exploit 完整链路
-- 🕵️ **社工情报** - OSINT/钓鱼/侦察
+- 🔍 **逆向工程** `seagull-reverse`
+- 🌐 **渗透测试** `seagull-pentest`
+- 🦅 **漏洞利用** `seagull-exploit`
+- 🎮 **游戏辅助** `seagull-game-hack`
+- 🔐 **卡密安全** `seagull-license-security`
+
+AGENTS.md 里还有 unlimited / memory / malware / evasion / social-eng 等路由名，与上游原文一致；本插件不额外补这些技能目录。
 
 ---
 
