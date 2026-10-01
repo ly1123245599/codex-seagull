@@ -1,0 +1,47 @@
+{
+  "description": "seagull-armor-break — Codex 侧对应 Hermes v1.1.0 的 pre_llm_call / pre_tool_call；问候改写走 UserPromptSubmit 特判指令。",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/hooks/seagull_hook.py\"",
+            "commandWindows": "python \"${PLUGIN_ROOT}/hooks/seagull_hook.py\"",
+            "statusMessage": "seagull soul",
+            "timeout": 30,
+            "additionalContextLimit": 0
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/hooks/seagull_hook.py\"",
+            "commandWindows": "python \"${PLUGIN_ROOT}/hooks/seagull_hook.py\"",
+            "statusMessage": "seagull",
+            "timeout": 15,
+            "additionalContextLimit": 4000
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${PLUGIN_ROOT}/hooks/seagull_hook.py\"",
+            "commandWindows": "python \"${PLUGIN_ROOT}/hooks/seagull_hook.py\"",
+            "statusMessage": "seagull tool",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

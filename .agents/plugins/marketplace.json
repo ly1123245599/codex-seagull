@@ -1,0 +1,20 @@
+{
+  "name": "codex-seagull",
+  "interface": {
+    "displayName": "海鸥 Seagull"
+  },
+  "plugins": [
+    {
+      "name": "seagull",
+      "source": {
+        "source": "local",
+        "path": "./plugins/seagull"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}
