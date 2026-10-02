@@ -62,7 +62,7 @@ Codex 安装契约。marketplace 名 `codex-seagull`，插件名 `seagull`，安
 
 ## 🛠️ 技能文件说明
 
-随发 13 个技能。AGENTS.md 核心技能表与 `skills/<name>/SKILL.md` 必须一一对应。不给技能 1:1 配 MCP。已有外部 MCP（`idalib` / `cheatengine`）按 AGENTS.md 工具编排表调用。
+随发 13 个技能。AGENTS.md 核心技能表与 `skills/<name>/SKILL.md` 必须一一对应。不给技能 1:1 配 MCP。已有外部 MCP 按 AGENTS.md「MCP 操作卡」调用：`idalib` 必须 `idb_open` 拿 `database`；`cheatengine` 先开 `Cheat Engine.exe` 再 `open_process`。ELF/APK 不强制 IDA；调试不走 CE。
 
 ### seagull-reverse
 二进制分析、反编译、脱壳、协议逆向。PE/ELF/APK/固件。

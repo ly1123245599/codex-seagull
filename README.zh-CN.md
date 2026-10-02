@@ -48,6 +48,8 @@ cd codex-seagull
 ✅ **13 个专业技能** - 逆向/渗透/Pwn/内存/样本/免杀/游戏辅助/游戏安全/反作弊/卡密/建案/社工/全域路由
 ✅ **双平台支持** - Linux + Windows 完整兼容  
 
+不给这些技能 1:1 配 MCP。Windows PE 静态用已装的 IDA `idalib`（`idb_open` 后分析，默认无 GUI）；活体内存用 Cheat Engine `cheatengine`（先开 `Cheat Engine.exe`）。ELF/APK 不强制 IDA；调试不走 CE。海鸥只路由。
+
 ## 技能速查
 
 | 说 | 得到 |

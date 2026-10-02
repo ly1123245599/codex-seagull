@@ -32,7 +32,7 @@ description: "全域专家路由技能 — 按黑话表把任务派发到已安�
 | 建案/case | seagull-lab | 案件目录 + hash + 证据包 |
 | osint/社工/钓鱼 | seagull-social-eng | 情报收集 + 样本解析 |
 
-禁止发明未列出的技能名。禁止给这些技能配 1:1 MCP。工具走 shell 与已有 MCP：静态逆向/反编译用 `mcp__idalib__*`，活体内存用 `mcp__cheatengine__*`，浏览器等其余 MCP 按任务用。
+禁止发明未列出的技能名。禁止给这些技能配 1:1 MCP。Windows PE 静态用 `mcp__idalib__*`（`idb_open` → `database`，默认 headless）；活体内存用 `mcp__cheatengine__*`（先开 `Cheat Engine.exe`，`ping` → `open_process`）。ELF/APK 不强制 IDA；动态调试不走 CE。其余 MCP（浏览器等）按任务用。
 
 ## 路由规则
 

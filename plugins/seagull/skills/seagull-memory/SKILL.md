@@ -24,9 +24,16 @@ description: "进程内存与运行时结构技能 — 句柄/pid、模块基址
 
 ## 工具绑定
 
-Windows 活体优先会话内 `mcp__cheatengine__*`：`ping`（确认 pipe）→ `open_process` → `get_process_info` / `enum_modules` / `read_memory`。
-不要让操作员在 CE GUI 里点 Attach。CE 未开、pipe 不通时，先起官方入口 `Cheat Engine.exe`，再 MCP。
-本轮没有 cheatengine 工具时，才用下面的 ctypes `MemorySession`。禁止给本技能 1:1 再配一座 MCP。
+Windows 活体：本轮有 `mcp__cheatengine__*` 时 **禁止先写 ctypes RPM**。顺序强制：
+
+1. 官方入口 `Cheat Engine.exe` 已开（让它自己选 AVX2/x64 后端）。没开就先起它，不要直接起 `cheatengine-x86_64.exe`。
+2. `ping`（`process_id: 0` 也算桥活着）。
+3. `open_process(pid 或进程名)`。不要 GUI Attach。
+4. `get_process_info` / `enum_modules` / `read_memory`。
+
+CE 不是调试器。动态断点 / hook 交 seagull-reverse（x64dbg / Frida）。
+Linux 仍用 `/proc` + `process_vm_readv`。
+本轮没有 cheatengine 工具，才用下面 ctypes `MemorySession`。禁止给本技能 1:1 配 MCP。
 
 ## 工作流程
 
@@ -43,7 +50,9 @@ ps -eo pid,comm,rss | rg target
 cat /proc/$PID/maps
 ```
 
-### 2. 读写原语（Windows）
+### 2. 读写原语（Windows ctypes 降级）
+
+仅当本轮没有 `mcp__cheatengine__*` 时使用。有 CE MCP 就走上面的 `open_process` / `read_memory`，不要复制这段当主路径。
 
 ```python
 import ctypes, ctypes.wintypes as wt, struct, pathlib

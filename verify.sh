@@ -101,12 +101,17 @@ else
   ok "AGENTS.md has no phantom skill names"
 fi
 plugin="plugins/seagull/.codex-plugin/plugin.json"
-if grep -q '"version": "1.2.1"' "$plugin" && ! grep -q "mcpServers" "$plugin"; then
-  ok "plugin.json is 1.2.1 and has no MCP servers"
+if grep -q "idb_open" "$agents" && grep -q "Cheat Engine.exe" "$agents"; then
+  ok "AGENTS.md has idalib/CE operation cards"
+else
+  fail "AGENTS.md missing idb_open or Cheat Engine.exe steps"
+fi
+if grep -q '"version": "1.2.2"' "$plugin" && ! grep -q "mcpServers" "$plugin"; then
+  ok "plugin.json is 1.2.2 and has no MCP servers"
 else
   fail "plugin.json version or MCP field wrong"
 fi
-if grep -q "UserPromptSubmit" "$hook" && grep -q "GREETING_REPLY" "$hook"; then
+if grep -q "UserPromptSubmit" "$hook" && grep -q "GREETING_REPLY" "$hook" && grep -q "idb_open" "$hook"; then
   ok "hook injects greeting + armor stack"
 else
   fail "hook greeting/armor stack incomplete"

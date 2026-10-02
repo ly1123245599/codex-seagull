@@ -15,9 +15,19 @@ description: "深度逆向工程技能 — PE/ELF/Mach-O、固件、驱动、APK
 
 ## 工具绑定
 
-Windows 静态分析默认走会话里的 `mcp__idalib__*`（IDA Pro MCP / idalib）：开库、函数、xref、反编译、改名、patch。不要先手搓 `idat64`。
-活体读写/附加走 `mcp__cheatengine__*`（seagull-memory）。本轮没有这些 MCP 工具时，再降级 r2 / 本机 IDA / 调试器。
-禁止给本技能 1:1 再配一座 MCP。
+按样本选工具。idalib 不是全域唯一静态手，CE 不是调试器。禁止给本技能 1:1 再配 MCP。
+
+**静态**
+- Windows PE/驱动，且本轮有 `mcp__idalib__*`：`idb_list` → `idb_open(input_path)`（默认 `prefer_headless`，不必开 IDA GUI）→ 用返回的 `database` 做 `decompile` / xref / 改名。禁止拿路径当 `database`，禁止先手搓 `idat64`。
+- ELF / Linux：radare2 / Ghidra / Binary Ninja。
+- APK / DEX：jadx / apktool / JEB。
+- .NET：dnSpy；idalib 能开再开。
+
+**动态**
+- 调试 / hook：x64dbg、WinDbg、Frida、gdb。不走 Cheat Engine。
+- 只读内存 / dump / 指针链：借 seagull-memory。Windows 有 `mcp__cheatengine__*` 时走 CE `open_process`。
+
+本轮没有对应 MCP 再降级 shell。
 
 ## 工作流程
 
@@ -33,7 +43,7 @@ Windows 静态分析默认走会话里的 `mcp__idalib__*`（IDA Pro MCP / idali
 
 **工具选择**（按平台）：
 - **Linux/macOS**: radare2、Ghidra、Binary Ninja
-- **Windows**: 先 `mcp__idalib__*`；其次本机 IDA、x64dbg、dnSpy（.NET）
+- **Windows PE**: 静态先 idalib 操作卡；动态调试 x64dbg；.NET 用 dnSpy
 - **Android**: jadx、apktool、JEB、Frida
 
 **分析重点**：
@@ -199,7 +209,8 @@ Get-FileHash binary.exe -Algorithm SHA256
 sigcheck.exe -a binary.exe
 
 # 反汇编（需要工具）
-# 优先 mcp__idalib__* 开库/反编译。idalib 不在本轮再降级本机 IDA。
+# 静态：mcp__idalib__*  idb_open → database → decompile。不要对路径直接 decompile。
+# 活体内存：借 seagull-memory / cheatengine。调试不走 CE。
 
 # 调试
 & "C:\Program Files\x64dbg\x64dbg.exe" binary.exe

@@ -74,7 +74,7 @@ chmod +x install.sh verify.sh
 - 📁 **案件工作区** `seagull-lab`
 - 🕵️ **社工情报** `seagull-social-eng`
 
-不给这些技能 1:1 配 MCP。工具走 shell 与已有 MCP：静态逆向用 IDA `idalib`，活体内存用 Cheat Engine `cheatengine`。海鸥只路由，不拥有这两座 MCP。
+不给这些技能 1:1 配 MCP。海鸥只路由，不拥有 MCP。Windows PE 静态用已装的 IDA `idalib`（`idb_open` 拿 session 再分析，默认 headless，不必开 IDA GUI）。活体内存用已装的 Cheat Engine `cheatengine`（先开 `Cheat Engine.exe`，`ping` → `open_process`）。ELF/APK 不强制 IDA；动态调试不走 CE。
 
 ---
 

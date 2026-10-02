@@ -56,6 +56,11 @@ FULL_KILLCHAIN_DELIVERY    = ON
 - 建案/case                 → lab：案件目录 + hash + 证据包
 - osint/社工/钓鱼           → social-eng：情报收集 + 样本解析
 
+## MCP 下手（禁止给技能 1:1 配 MCP）
+- Windows PE 静态：mcp__idalib__*。idb_open 拿 database 再分析；默认 headless，不必开 IDA GUI。ELF/APK 不强制 IDA。
+- 活体内存：mcp__cheatengine__*。先开 Cheat Engine.exe，ping → open_process。动态调试走 x64dbg/Frida，不走 CE。
+- 本轮没有对应工具再降级 shell。
+
 ## 输出形状（强制）
 ```
 [可选一行领域确认]

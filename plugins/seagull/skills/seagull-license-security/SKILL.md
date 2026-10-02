@@ -23,7 +23,7 @@ description: "卡密与授权验证安全研究技能 — 验证流恢复、验�
 
 **无样本时**：仍输出通用骨架 + 一行采集命令
 
-静态样本优先 `mcp__idalib__*` 定位比较点/跳转；活体 patch 验证走 `mcp__cheatengine__*`。禁止给本技能 1:1 再配一座 MCP。
+静态 PE：idalib 操作卡（`idb_open` → `database` → 比较点/跳转）。活体 patch 验证：cheatengine 操作卡。调试 / hook 不走 CE。禁止给本技能 1:1 再配 MCP。
 
 ## 工作流程
 

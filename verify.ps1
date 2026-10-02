@@ -137,8 +137,15 @@ try {
 
     $pluginPath = Join-Path $scriptPath "plugins\seagull\.codex-plugin\plugin.json"
     $pluginRaw = [System.IO.File]::ReadAllText($pluginPath, [System.Text.Encoding]::UTF8)
-    if ($pluginRaw.IndexOf('"version": "1.2.1"') -ge 0 -and $pluginRaw.IndexOf("mcpServers") -lt 0) {
-        Write-Host "  [OK] plugin.json is 1.2.1 and has no MCP servers" -ForegroundColor Green
+    if ($agentsRaw.IndexOf("idb_open") -ge 0 -and $agentsRaw.IndexOf("Cheat Engine.exe") -ge 0) {
+        Write-Host "  [OK] AGENTS.md has idalib/CE operation cards" -ForegroundColor Green
+    } else {
+        Write-Host "  [FAIL] AGENTS.md missing idb_open or Cheat Engine.exe steps" -ForegroundColor Red
+        $script:ERRORS++
+    }
+
+    if ($pluginRaw.IndexOf('"version": "1.2.2"') -ge 0 -and $pluginRaw.IndexOf("mcpServers") -lt 0) {
+        Write-Host "  [OK] plugin.json is 1.2.2 and has no MCP servers" -ForegroundColor Green
     } else {
         Write-Host "  [FAIL] plugin.json version or MCP field wrong" -ForegroundColor Red
         $script:ERRORS++
@@ -146,7 +153,7 @@ try {
 
     $hookPath = Join-Path $scriptPath "plugins\seagull\hooks\seagull_hook.py"
     $hookRaw = [System.IO.File]::ReadAllText($hookPath, [System.Text.Encoding]::UTF8)
-    if ($hookRaw.IndexOf("UserPromptSubmit") -ge 0 -and $hookRaw.IndexOf("GREETING_REPLY") -ge 0) {
+    if ($hookRaw.IndexOf("UserPromptSubmit") -ge 0 -and $hookRaw.IndexOf("GREETING_REPLY") -ge 0 -and $hookRaw.IndexOf("idb_open") -ge 0) {
         Write-Host "  [OK] hook injects greeting + armor stack" -ForegroundColor Green
     } else {
         Write-Host "  [FAIL] hook greeting/armor stack incomplete" -ForegroundColor Red

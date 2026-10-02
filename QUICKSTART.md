@@ -113,6 +113,9 @@ codex plugin add seagull@codex-seagull
 ### Q4: 如何卸载？
 **A:** `codex plugin remove seagull@codex-seagull`
 
+### Q5: 要给每个技能配 MCP 吗？
+**A:** 不要。静态 PE 用已装的 `idalib`（`idb_open` 后分析），活体内存用已装的 `cheatengine`（先开 `Cheat Engine.exe`）。ELF/APK 不强制 IDA，调试不走 CE。
+
 ---
 
 ## 🎯 下一步
