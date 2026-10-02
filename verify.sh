@@ -101,8 +101,8 @@ else
   ok "AGENTS.md has no phantom skill names"
 fi
 plugin="plugins/seagull/.codex-plugin/plugin.json"
-if grep -q '"version": "1.2.0"' "$plugin" && ! grep -q "mcpServers" "$plugin"; then
-  ok "plugin.json is 1.2.0 and has no MCP servers"
+if grep -q '"version": "1.2.1"' "$plugin" && ! grep -q "mcpServers" "$plugin"; then
+  ok "plugin.json is 1.2.1 and has no MCP servers"
 else
   fail "plugin.json version or MCP field wrong"
 fi

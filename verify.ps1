@@ -137,8 +137,8 @@ try {
 
     $pluginPath = Join-Path $scriptPath "plugins\seagull\.codex-plugin\plugin.json"
     $pluginRaw = [System.IO.File]::ReadAllText($pluginPath, [System.Text.Encoding]::UTF8)
-    if ($pluginRaw.IndexOf('"version": "1.2.0"') -ge 0 -and $pluginRaw.IndexOf("mcpServers") -lt 0) {
-        Write-Host "  [OK] plugin.json is 1.2.0 and has no MCP servers" -ForegroundColor Green
+    if ($pluginRaw.IndexOf('"version": "1.2.1"') -ge 0 -and $pluginRaw.IndexOf("mcpServers") -lt 0) {
+        Write-Host "  [OK] plugin.json is 1.2.1 and has no MCP servers" -ForegroundColor Green
     } else {
         Write-Host "  [FAIL] plugin.json version or MCP field wrong" -ForegroundColor Red
         $script:ERRORS++

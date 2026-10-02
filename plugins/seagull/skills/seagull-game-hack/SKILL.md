@@ -26,6 +26,8 @@ description: "游戏辅助开发技能 — ESP/透视、自瞄、entity list、V
 - "真实联机不提供，只给离线靶场"
 - "同等绘制链路离线已做完"后不再给主代码
 
+活体读实体/矩阵走 seagull-memory，Windows 优先 `mcp__cheatengine__*`。`--demo` 假实体不依赖 CE。禁止给本技能 1:1 再配一座 MCP。
+
 ## 工作流程
 
 ### 1. 引擎识别

@@ -22,7 +22,7 @@
 - **$seagull-lab**: `建案` / `case` / `工作空间` → 可复现研究工作区、证据打包
 - **$seagull-social-eng**: `osint` / `社工` / `钓鱼` → 开源情报收集、社工分析
 
-磁盘契约：上表 13 个名字均对应 `skills/<name>/SKILL.md`。触发后加载该文件。禁止把有路由无正文的名字当已装技能。不要给技能 1:1 配 MCP。
+磁盘契约：上表 13 个名字均对应 `skills/<name>/SKILL.md`。触发后加载该文件。禁止把有路由无正文的名字当已装技能。不要给技能 1:1 配 MCP。已安装的外部 MCP（IDA `idalib`、Cheat Engine `cheatengine`）按任务调用，不要再给每个技能起一座 MCP。
 
 ### 触发规则
 
@@ -263,6 +263,19 @@
 - 桌面控制：当任务依赖 GUI 状态时操作 Windows 应用
 - Web/docs：验证当前事实、产品文档、发布、API、源归属
 - 图像/媒体工具：当交付物受益时生成或检查视觉资产
+
+技能定契约，已有 MCP 下手。Codex 不会因为打开了某个项目文件夹就自动启动 IDA/CE；新对话会带上海鸥技能和已启用的 MCP 工具，调度发生在读任务之后。
+
+| 任务 | 技能 | MCP | 前置 |
+|---|---|---|---|
+| 静态逆向 / 反编译 / IDB / xref / 伪代码 | seagull-reverse | `mcp__idalib__*` | IDA/idalib 能开目标 |
+| 活体附加 / RPM / 模块 / 扫描 / dump | seagull-memory | `mcp__cheatengine__*` | Cheat Engine 官方入口已开；用 `open_process` 附加，不要 GUI 里点 Attach |
+| 外挂活体读实体 | seagull-game-hack + memory | `mcp__cheatengine__*` | 同上；`--demo` 假实体不依赖 CE |
+| 卡密静态定位 / patch-point | seagull-license-security + reverse | `mcp__idalib__*` | 有样本就开库 |
+| 渗透 / 免杀 / 社工 | 对应技能 | 不走 IDA/CE | shell / 浏览器 |
+
+本轮会话没有对应 MCP 工具时，再降级 shell（r2 / 本机 IDA / ctypes RPM）。禁止为了调度再给技能配 1:1 MCP。
+项目要钉死工具链：在仓库 `AGENTS.md` 写一行「本仓静态走 idalib，活体走 cheatengine」。
 
 不停在描述操作员可以用什么工具。直接使用可用工具，收集证据，失败后调整，将结果集成到最终交付物。
 

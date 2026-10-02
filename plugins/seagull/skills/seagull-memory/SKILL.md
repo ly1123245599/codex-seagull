@@ -22,6 +22,12 @@ description: "进程内存与运行时结构技能 — 句柄/pid、模块基址
 
 默认平台：Windows x64。Linux 用 `/proc/<pid>/maps` + `process_vm_readv`。
 
+## 工具绑定
+
+Windows 活体优先会话内 `mcp__cheatengine__*`：`ping`（确认 pipe）→ `open_process` → `get_process_info` / `enum_modules` / `read_memory`。
+不要让操作员在 CE GUI 里点 Attach。CE 未开、pipe 不通时，先起官方入口 `Cheat Engine.exe`，再 MCP。
+本轮没有 cheatengine 工具时，才用下面的 ctypes `MemorySession`。禁止给本技能 1:1 再配一座 MCP。
+
 ## 工作流程
 
 ### 1. 定位进程与模块

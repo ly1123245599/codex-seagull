@@ -13,6 +13,12 @@ description: "深度逆向工程技能 — PE/ELF/Mach-O、固件、驱动、APK
 - 提供二进制文件、伪代码、汇编、崩溃跟踪
 - 需要算法恢复、协议重构、patch 点识别
 
+## 工具绑定
+
+Windows 静态分析默认走会话里的 `mcp__idalib__*`（IDA Pro MCP / idalib）：开库、函数、xref、反编译、改名、patch。不要先手搓 `idat64`。
+活体读写/附加走 `mcp__cheatengine__*`（seagull-memory）。本轮没有这些 MCP 工具时，再降级 r2 / 本机 IDA / 调试器。
+禁止给本技能 1:1 再配一座 MCP。
+
 ## 工作流程
 
 ### 1. 初始 Triage
@@ -27,7 +33,7 @@ description: "深度逆向工程技能 — PE/ELF/Mach-O、固件、驱动、APK
 
 **工具选择**（按平台）：
 - **Linux/macOS**: radare2、Ghidra、Binary Ninja
-- **Windows**: IDA Pro、x64dbg、dnSpy（.NET）
+- **Windows**: 先 `mcp__idalib__*`；其次本机 IDA、x64dbg、dnSpy（.NET）
 - **Android**: jadx、apktool、JEB、Frida
 
 **分析重点**：
@@ -193,7 +199,7 @@ Get-FileHash binary.exe -Algorithm SHA256
 sigcheck.exe -a binary.exe
 
 # 反汇编（需要工具）
-& "C:\Program Files\IDA\idat64.exe" -A binary.exe
+# 优先 mcp__idalib__* 开库/反编译。idalib 不在本轮再降级本机 IDA。
 
 # 调试
 & "C:\Program Files\x64dbg\x64dbg.exe" binary.exe

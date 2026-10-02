@@ -74,7 +74,7 @@ chmod +x install.sh verify.sh
 - 📁 **案件工作区** `seagull-lab`
 - 🕵️ **社工情报** `seagull-social-eng`
 
-不给这些技能 1:1 配 MCP。工具走 shell 与已有 MCP。
+不给这些技能 1:1 配 MCP。工具走 shell 与已有 MCP：静态逆向用 IDA `idalib`，活体内存用 Cheat Engine `cheatengine`。海鸥只路由，不拥有这两座 MCP。
 
 ---
 
