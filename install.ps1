@@ -1,12 +1,17 @@
 # 海鸥破甲智能体安装脚本 (Windows)
 # PowerShell 5.1+
-# 将本仓库注册为 Codex marketplace，并安装 seagull@codex-seagull
+# 默认把 GitHub git 源注册为 Codex marketplace，并安装 seagull@codex-seagull。
+# -Local 才会把当前目录注册为 local marketplace（会覆盖 git 源）。
 
 param(
-    [switch]$Force
+    [switch]$Force,
+    [switch]$Local
 )
 
 $ErrorActionPreference = "Stop"
+
+$GitSource = "https://github.com/ly1123245599/codex-seagull.git"
+$GitRef = "master"
 
 Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host "  海鸥破甲智能体 - 安装向导" -ForegroundColor Cyan
@@ -72,12 +77,20 @@ if ($Force) {
     & $Codex plugin marketplace remove codex-seagull 2>$null | Out-Null
 }
 
-Write-Host "[*] 注册 marketplace: $RepoRoot" -ForegroundColor Cyan
-$addOut = & $Codex plugin marketplace add $RepoRoot --json 2>&1
+$addArgs = @("plugin", "marketplace", "add")
+if ($Local) {
+    Write-Host "[!] -Local：注册当前目录。这会覆盖 GitHub git 源。" -ForegroundColor Yellow
+    Write-Host "[*] 注册 marketplace: $RepoRoot" -ForegroundColor Cyan
+    $addArgs += @($RepoRoot, "--json")
+} else {
+    Write-Host "[*] 注册 marketplace: $GitSource --ref $GitRef" -ForegroundColor Cyan
+    $addArgs += @($GitSource, "--ref", $GitRef, "--json")
+}
+$addOut = & $Codex @addArgs 2>&1
 $addExit = $LASTEXITCODE
 if ($addExit -ne 0) {
     Write-Host $addOut
-    Write-Host "[!] marketplace add 返回 $addExit，继续尝试安装插件" -ForegroundColor Yellow
+    Write-Host "[!] marketplace add 返回 $addExit。若已有同名 marketplace，加 -Force 后重跑。" -ForegroundColor Yellow
 } else {
     Write-Host "[✓] marketplace 已注册" -ForegroundColor Green
 }
@@ -99,7 +112,7 @@ Write-Host "==========================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "下一步：" -ForegroundColor Yellow
 Write-Host "  1. 重启 Codex"
-Write-Host "  2. 确认插件 seagull@codex-seagull 已启用"
+Write-Host "  2. 确认插件 seagull@codex-seagull 已启用，marketplace 为 git 源（除非用了 -Local）"
 Write-Host "  3. 会话里执行 /hooks，信任 seagull 的 SessionStart / UserPromptSubmit"
 Write-Host "  4. 发送 '在吗' 激活"
 Write-Host ""

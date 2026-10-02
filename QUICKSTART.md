@@ -27,25 +27,25 @@ codex --version
 **一行：**
 
 ```bash
-codex plugin marketplace add https://github.com/ly1123245599/codex-seagull && codex plugin add seagull@codex-seagull
-```
-
-**本地：**
-
-```bash
-# Linux/macOS/Git Bash
-./install.sh
-
-# Windows
-.\install.ps1
+codex plugin marketplace add https://github.com/ly1123245599/codex-seagull.git --ref master && codex plugin add seagull@codex-seagull
 ```
 
 这一步会：
 
-- ✅ 把本仓库注册为 marketplace `codex-seagull`
+- ✅ 把 GitHub 仓库注册为 marketplace `codex-seagull`（`source_type=git`，`ref=master`）
 - ✅ 安装插件 `seagull@codex-seagull`
 - ✅ 加载破甲 hook + 13 个技能
 - ✅ 不覆盖你的模型 / API 配置
+
+**本地（会覆盖 git 源，仅用于未推送的改动）：**
+
+```bash
+# Linux/macOS/Git Bash
+./install.sh --local
+
+# Windows
+.\install.ps1 -Local
+```
 
 ---
 
@@ -94,7 +94,7 @@ codex plugin add seagull@codex-seagull
 或在仓库目录：
 
 ```bash
-./install.sh --force
+./install.sh --force --local
 ```
 
 ---

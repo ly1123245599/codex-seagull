@@ -21,19 +21,21 @@
 
 **为 Codex 打造的 CTF/安全研究专用插件**
 
-人格与破甲注入来自 [laoshu666/hermes-seagull](https://github.com/laoshu666/hermes-seagull)。专业技能在上游 5 个正文之外，按 AGENTS 路由表补齐为 13 个 SKILL.md。
+人格与破甲注入来自 [laoshu666/hermes-seagull](https://github.com/laoshu666/hermes-seagull)。本仓库随发 13 个 SKILL.md，与 AGENTS 路由表一一对应。
 
 ## 快速开始
 
 ```bash
 # 一行安装
-codex plugin marketplace add https://github.com/ly1123245599/codex-seagull && codex plugin add seagull@codex-seagull
+codex plugin marketplace add https://github.com/ly1123245599/codex-seagull.git --ref master && codex plugin add seagull@codex-seagull
 
-# 或克隆后本地安装
+# 克隆后默认仍装 GitHub git 源：
 git clone https://github.com/ly1123245599/codex-seagull.git
 cd codex-seagull
-./install.sh          # Linux/macOS/Git Bash
-.\install.ps1         # Windows PowerShell
+./install.sh
+.\install.ps1
+
+# 只有要装当前未推送的本地改动时才用 --local / -Local（会覆盖 git 源）
 ```
 
 重启 Codex，`/hooks` 信任 seagull，发送 `在吗` 激活全域模式。

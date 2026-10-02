@@ -4,7 +4,7 @@
 
 > 通过插件式命令行安装，叠加在 Codex 之上，提供完整破甲能力。
 >
-> 人格、技能与破甲栈 1:1 来自 [laoshu666/hermes-seagull](https://github.com/laoshu666/hermes-seagull) v1.1.0。使用前请阅读 [免责声明](./DISCLAIMER.md)。
+> 人格与破甲栈来自 [laoshu666/hermes-seagull](https://github.com/laoshu666/hermes-seagull) v1.1.0。专业技能按 AGENTS 路由表随发 13 个 SKILL.md，不是上游那 5 个。使用前请阅读 [免责声明](./DISCLAIMER.md)。
 
 ---
 
@@ -24,10 +24,10 @@
 ### 一行安装
 
 ```bash
-codex plugin marketplace add https://github.com/ly1123245599/codex-seagull && codex plugin add seagull@codex-seagull
+codex plugin marketplace add https://github.com/ly1123245599/codex-seagull.git --ref master && codex plugin add seagull@codex-seagull
 ```
 
-### 本地安装
+### 本地安装（会覆盖 git 源）
 
 ```bash
 git clone https://github.com/ly1123245599/codex-seagull.git
@@ -36,11 +36,11 @@ cd codex-seagull
 # Linux / macOS / Git Bash
 chmod +x install.sh verify.sh
 ./verify.sh
-./install.sh
+./install.sh --local
 
 # Windows PowerShell
 .\verify.ps1
-.\install.ps1
+.\install.ps1 -Local
 ```
 
 ### 启动
@@ -89,15 +89,14 @@ chmod +x install.sh verify.sh
 ## 🔄 更新
 
 ```bash
-git -C <repo> pull
 codex plugin marketplace upgrade codex-seagull
 codex plugin add seagull@codex-seagull
 ```
 
-本地仓库直接：
+只有当前 clone 有未推送改动时才用本地重装：
 
 ```bash
-./install.sh --force
+./install.sh --force --local
 ```
 
 ---
@@ -143,6 +142,7 @@ codex plugin marketplace remove codex-seagull
 MIT License
 
 人格与技能来自 [laoshu666/hermes-seagull](https://github.com/laoshu666/hermes-seagull)（MIT）。
+本仓库技能表是 13 个 SKILL.md，不是上游原样拷贝。
 
 ---
 

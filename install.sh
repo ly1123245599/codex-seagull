@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # 海鸥破甲智能体安装脚本 (Linux/macOS / Git Bash)
+# 默认注册 GitHub git 源。--local 才会把当前目录注册为 local marketplace（会覆盖 git 源）。
 set -euo pipefail
 
 echo "=========================================="
@@ -19,9 +20,20 @@ else
 fi
 
 FORCE=0
-if [ "${1:-}" = "--force" ] || [ "${1:-}" = "-Force" ]; then
-  FORCE=1
-fi
+LOCAL=0
+GIT_SOURCE="https://github.com/ly1123245599/codex-seagull.git"
+GIT_REF="master"
+for arg in "$@"; do
+  case "$arg" in
+    --force|-Force) FORCE=1 ;;
+    --local|-Local) LOCAL=1 ;;
+    *)
+      echo "[错误] 未知参数: $arg"
+      echo "用法: ./install.sh [--force] [--local]"
+      exit 1
+      ;;
+  esac
+done
 
 find_codex() {
   if [ -n "${CODEX_CLI_PATH:-}" ] && [ -x "$CODEX_CLI_PATH" ]; then
@@ -74,9 +86,17 @@ if [ "$FORCE" -eq 1 ]; then
   "$CODEX" plugin marketplace remove codex-seagull >/dev/null 2>&1 || true
 fi
 
-echo "[*] 注册 marketplace: $REPO_ROOT_NATIVE"
-if ! "$CODEX" plugin marketplace add "$REPO_ROOT_NATIVE" --json; then
-  echo "[!] marketplace add 失败，继续尝试安装插件"
+if [ "$LOCAL" -eq 1 ]; then
+  echo "[!] --local：注册当前目录。这会覆盖 GitHub git 源。"
+  echo "[*] 注册 marketplace: $REPO_ROOT_NATIVE"
+  if ! "$CODEX" plugin marketplace add "$REPO_ROOT_NATIVE" --json; then
+    echo "[!] marketplace add 失败。若已有同名 marketplace，加 --force 后重跑。"
+  fi
+else
+  echo "[*] 注册 marketplace: $GIT_SOURCE --ref $GIT_REF"
+  if ! "$CODEX" plugin marketplace add "$GIT_SOURCE" --ref "$GIT_REF" --json; then
+    echo "[!] marketplace add 失败。若已有同名 marketplace，加 --force 后重跑。"
+  fi
 fi
 
 echo "[*] 安装插件 seagull@codex-seagull"
@@ -89,7 +109,7 @@ echo "=========================================="
 echo ""
 echo "下一步："
 echo "  1. 重启 Codex"
-echo "  2. 确认插件 seagull@codex-seagull 已启用"
+echo "  2. 确认插件 seagull@codex-seagull 已启用，marketplace 为 git 源（除非用了 --local）"
 echo "  3. 会话里执行 /hooks，信任 seagull 的 SessionStart / UserPromptSubmit"
 echo "  4. 发送 '在吗' 激活"
 echo ""

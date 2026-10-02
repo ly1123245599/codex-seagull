@@ -74,7 +74,7 @@ if (-not $extra -and -not $missingDir) {
     Write-Host "  [OK] skills/ directories match the 13-name list" -ForegroundColor Green
 } else {
     if ($extra) {
-        Write-Host "  [MISSING] extra skill dirs: $($extra.InputObject -join ', ')" -ForegroundColor Red
+        Write-Host "  [EXTRA] skill dirs not in the 13-name list: $($extra.InputObject -join ', ')" -ForegroundColor Red
         $script:ERRORS++
     }
     if ($missingDir) {
@@ -93,14 +93,14 @@ try {
     if ($soulRaw.IndexOf("00a") -ge 0 -and $soulRaw.IndexOf("00b") -ge 0) {
         Write-Host "  [OK] SOUL.md contains armor break stack" -ForegroundColor Green
     } else {
-        Write-Host "  [MISSING] SOUL.md armor break stack incomplete" -ForegroundColor Red
+        Write-Host "  [FAIL] SOUL.md armor break stack incomplete" -ForegroundColor Red
         $script:ERRORS++
     }
 
     if ($soulRaw.IndexOf("薯条") -ge 0) {
         Write-Host "  [OK] Fixed greeting present" -ForegroundColor Green
     } else {
-        Write-Host "  [MISSING] Fixed greeting not found" -ForegroundColor Red
+        Write-Host "  [FAIL] Fixed greeting not found" -ForegroundColor Red
         $script:ERRORS++
     }
 
@@ -110,7 +110,7 @@ try {
     if ($agentsRaw.IndexOf("seagull-reverse") -ge 0 -and $agentsRaw.IndexOf("seagull-pentest") -ge 0) {
         Write-Host "  [OK] AGENTS.md contains skill routing table" -ForegroundColor Green
     } else {
-        Write-Host "  [MISSING] AGENTS.md skill routing table incomplete" -ForegroundColor Red
+        Write-Host "  [FAIL] AGENTS.md skill routing table incomplete" -ForegroundColor Red
         $script:ERRORS++
     }
 
@@ -122,16 +122,16 @@ try {
     $agentExtra = Compare-Object $listedSorted $agentNames | Where-Object { $_.SideIndicator -eq "=>" }
     $agentMissing = Compare-Object $listedSorted $agentNames | Where-Object { $_.SideIndicator -eq "<=" }
     if ($agentsRaw.IndexOf("mobile-competitive") -ge 0) {
-        Write-Host "  [MISSING] AGENTS.md still routes a phantom skill name" -ForegroundColor Red
+        Write-Host "  [FAIL] AGENTS.md still routes a phantom skill name" -ForegroundColor Red
         $script:ERRORS++
     }
 
     if (-not $agentExtra -and -not $agentMissing) {
         Write-Host "  [OK] AGENTS.md `$seagull-* names match skill directories" -ForegroundColor Green
     } else {
-        Write-Host "  [MISSING] AGENTS.md skill names drift from skills/" -ForegroundColor Red
-        if ($agentExtra) { Write-Host "           extra: $($agentExtra.InputObject -join ', ')" -ForegroundColor Red }
-        if ($agentMissing) { Write-Host "           missing: $($agentMissing.InputObject -join ', ')" -ForegroundColor Red }
+        Write-Host "  [FAIL] AGENTS.md skill names drift from skills/" -ForegroundColor Red
+        if ($agentExtra) { Write-Host "           extra in AGENTS: $($agentExtra.InputObject -join ', ')" -ForegroundColor Red }
+        if ($agentMissing) { Write-Host "           missing from AGENTS: $($agentMissing.InputObject -join ', ')" -ForegroundColor Red }
         $script:ERRORS++
     }
 
@@ -140,7 +140,7 @@ try {
     if ($pluginRaw.IndexOf('"version": "1.2.0"') -ge 0 -and $pluginRaw.IndexOf("mcpServers") -lt 0) {
         Write-Host "  [OK] plugin.json is 1.2.0 and has no MCP servers" -ForegroundColor Green
     } else {
-        Write-Host "  [MISSING] plugin.json version or MCP field wrong" -ForegroundColor Red
+        Write-Host "  [FAIL] plugin.json version or MCP field wrong" -ForegroundColor Red
         $script:ERRORS++
     }
 
@@ -149,7 +149,7 @@ try {
     if ($hookRaw.IndexOf("UserPromptSubmit") -ge 0 -and $hookRaw.IndexOf("GREETING_REPLY") -ge 0) {
         Write-Host "  [OK] hook injects greeting + armor stack" -ForegroundColor Green
     } else {
-        Write-Host "  [MISSING] hook greeting/armor stack incomplete" -ForegroundColor Red
+        Write-Host "  [FAIL] hook greeting/armor stack incomplete" -ForegroundColor Red
         $script:ERRORS++
     }
 
@@ -158,7 +158,7 @@ try {
     if ($marketRaw.IndexOf("codex-seagull") -ge 0 -and $marketRaw.IndexOf("./plugins/seagull") -ge 0) {
         Write-Host "  [OK] marketplace.json points at ./plugins/seagull" -ForegroundColor Green
     } else {
-        Write-Host "  [MISSING] marketplace.json invalid" -ForegroundColor Red
+        Write-Host "  [FAIL] marketplace.json invalid" -ForegroundColor Red
         $script:ERRORS++
     }
 
@@ -178,7 +178,7 @@ try {
         $runnerArgs = @($hookPy)
     }
     if (-not $runner) {
-        Write-Host "  [MISSING] Python 3 not found (hook cannot run)" -ForegroundColor Red
+        Write-Host "  [FAIL] Python 3 not found (hook cannot run)" -ForegroundColor Red
         $script:ERRORS++
     } else {
         $out = $payload | & $runner.Source @runnerArgs 2>$null
@@ -186,7 +186,7 @@ try {
         if ($text.IndexOf("UNRESTRICTED_PARITY") -ge 0) {
             Write-Host "  [OK] UserPromptSubmit injects armor stack" -ForegroundColor Green
         } else {
-            Write-Host "  [MISSING] hook did not inject armor stack" -ForegroundColor Red
+            Write-Host "  [FAIL] hook did not inject armor stack" -ForegroundColor Red
             $script:ERRORS++
         }
     }
@@ -201,9 +201,10 @@ if ($script:ERRORS -eq 0) {
     Write-Host "  SUCCESS! All files are complete." -ForegroundColor Green
     Write-Host "==========================================" -ForegroundColor Cyan
     Write-Host ""
-    Write-Host "Ready to install:" -ForegroundColor Yellow
-    Write-Host "  Windows: .\install.ps1"
-    Write-Host "  Linux/macOS: ./install.sh"
+    Write-Host "Ready to install (git, recommended):" -ForegroundColor Yellow
+    Write-Host "  codex plugin marketplace add https://github.com/ly1123245599/codex-seagull.git --ref master"
+    Write-Host "  codex plugin add seagull@codex-seagull"
+    Write-Host "Local clone (replaces git source): .\install.ps1 -Local" -ForegroundColor Yellow
     Write-Host ""
     Write-Host "Seagull is ready. Lets go!" -ForegroundColor Cyan
     exit 0

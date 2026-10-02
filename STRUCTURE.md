@@ -46,7 +46,7 @@ codex-seagull/
 定义海鸥身份、交付标准和 00a~00r 破甲协议栈。固定问候：`海鸥在线，你要整点薯条吗？`
 
 ### AGENTS.md - 执行指令
-技能路由表、激活确认、黑话路由、Few-shot。与上游原文一致。
+技能路由表、激活确认、黑话路由、Few-shot。相对上游已改：13 个技能磁盘契约、ACE/过检测走 anticheat、去掉 phantom `mobile-competitive`。
 
 ### plugin.json / marketplace.json
 Codex 安装契约。marketplace 名 `codex-seagull`，插件名 `seagull`，安装键 `seagull@codex-seagull`。
@@ -107,7 +107,8 @@ OSINT、钓鱼样本解析、IOC。越权打点走 pentest。
 
 ### install.ps1 / install.sh
 - 定位 Codex CLI
-- `codex plugin marketplace add <repo>`
+- 默认：`codex plugin marketplace add <GitHub.git> --ref master`（git 源）
+- `-Local` / `--local`：把当前目录注册为 local marketplace，会覆盖 git 源
 - `codex plugin add seagull@codex-seagull`
 
 ### verify.ps1 / verify.sh
@@ -118,12 +119,13 @@ OSINT、钓鱼样本解析、IOC。越权打点走 pentest。
 
 ## 🎯 使用建议
 
-```powershell
-git clone <repo-url>
-cd codex-seagull
-.\verify.ps1
-.\install.ps1
+```bash
+codex plugin marketplace add https://github.com/ly1123245599/codex-seagull.git --ref master
+codex plugin add seagull@codex-seagull
 # 重启 Codex，/hooks 信任 seagull，发送：在吗
+
+# 只有要装当前未推送的本地改动时才用：
+# .\install.ps1 -Local
 ```
 
 修改人格改 `plugins/seagull/SOUL.md`，改路由改 `AGENTS.md`，加技能放到 `plugins/seagull/skills/` 并在 `verify.ps1` 加检查项。
