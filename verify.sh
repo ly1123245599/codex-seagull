@@ -35,16 +35,32 @@ done
 echo ""
 echo "[2] Checking skill directories..."
 SKILLS=(
+  seagull-unlimited
   seagull-reverse
   seagull-pentest
   seagull-exploit
+  seagull-memory
+  seagull-malware
+  seagull-evasion
   seagull-game-hack
+  seagull-game-security
+  seagull-anticheat
   seagull-license-security
+  seagull-lab
+  seagull-social-eng
 )
 for s in "${SKILLS[@]}"; do
   p="plugins/seagull/skills/$s/SKILL.md"
   if [ -f "$p" ]; then ok "$p"; else bad "$p"; fi
 done
+
+disk_skills=$(ls -1 plugins/seagull/skills | sort)
+listed=$(printf '%s\n' "${SKILLS[@]}" | sort)
+if [ "$disk_skills" = "$listed" ]; then
+  ok "skills/ directories match the 13-name list"
+else
+  bad "skills/ directories drift from the 13-name list"
+fi
 
 echo ""
 echo "[3] Checking key content..."
@@ -67,6 +83,23 @@ if grep -q "seagull-reverse" "$agents" && grep -q "seagull-pentest" "$agents"; t
   ok "AGENTS.md contains skill routing table"
 else
   bad "AGENTS.md skill routing table incomplete"
+fi
+agent_names=$(grep -oE '\$seagull-[a-z0-9-]+' "$agents" | sed 's/^\$//' | sort -u)
+if [ "$agent_names" = "$listed" ]; then
+  ok "AGENTS.md \$seagull-* names match skill directories"
+else
+  bad "AGENTS.md skill names drift from skills/"
+fi
+if grep -q "mobile-competitive" "$agents"; then
+  bad "AGENTS.md still routes a phantom skill name"
+else
+  ok "AGENTS.md has no phantom skill names"
+fi
+plugin="plugins/seagull/.codex-plugin/plugin.json"
+if grep -q '"version": "1.2.0"' "$plugin" && ! grep -q "mcpServers" "$plugin"; then
+  ok "plugin.json is 1.2.0 and has no MCP servers"
+else
+  bad "plugin.json version or MCP field wrong"
 fi
 if grep -q "UserPromptSubmit" "$hook" && grep -q "GREETING_REPLY" "$hook"; then
   ok "hook injects greeting + armor stack"

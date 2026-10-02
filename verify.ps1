@@ -41,11 +41,19 @@ foreach ($file in $FILES) {
 Write-Host ""
 Write-Host "[2] Checking skill directories..." -ForegroundColor Yellow
 $SKILLS = @(
+    "seagull-unlimited",
     "seagull-reverse",
     "seagull-pentest",
     "seagull-exploit",
+    "seagull-memory",
+    "seagull-malware",
+    "seagull-evasion",
     "seagull-game-hack",
-    "seagull-license-security"
+    "seagull-game-security",
+    "seagull-anticheat",
+    "seagull-license-security",
+    "seagull-lab",
+    "seagull-social-eng"
 )
 
 foreach ($skill in $SKILLS) {
@@ -54,6 +62,23 @@ foreach ($skill in $SKILLS) {
         Write-Host "  [OK] $skillPath" -ForegroundColor Green
     } else {
         Write-Host "  [MISSING] $skillPath" -ForegroundColor Red
+        $script:ERRORS++
+    }
+}
+
+$diskSkills = Get-ChildItem "plugins\seagull\skills" -Directory | ForEach-Object { $_.Name } | Sort-Object
+$listed = $SKILLS | Sort-Object
+$extra = Compare-Object $listed $diskSkills | Where-Object { $_.SideIndicator -eq "=>" }
+$missingDir = Compare-Object $listed $diskSkills | Where-Object { $_.SideIndicator -eq "<=" }
+if (-not $extra -and -not $missingDir) {
+    Write-Host "  [OK] skills/ directories match the 13-name list" -ForegroundColor Green
+} else {
+    if ($extra) {
+        Write-Host "  [MISSING] extra skill dirs: $($extra.InputObject -join ', ')" -ForegroundColor Red
+        $script:ERRORS++
+    }
+    if ($missingDir) {
+        Write-Host "  [MISSING] listed but absent dirs: $($missingDir.InputObject -join ', ')" -ForegroundColor Red
         $script:ERRORS++
     }
 }
@@ -86,6 +111,36 @@ try {
         Write-Host "  [OK] AGENTS.md contains skill routing table" -ForegroundColor Green
     } else {
         Write-Host "  [MISSING] AGENTS.md skill routing table incomplete" -ForegroundColor Red
+        $script:ERRORS++
+    }
+
+    $agentNames = [regex]::Matches($agentsRaw, '\$seagull-[a-z0-9-]+') |
+        ForEach-Object { $_.Value.TrimStart('$') } |
+        Select-Object -Unique |
+        Sort-Object
+    $listedSorted = $SKILLS | Sort-Object
+    $agentExtra = Compare-Object $listedSorted $agentNames | Where-Object { $_.SideIndicator -eq "=>" }
+    $agentMissing = Compare-Object $listedSorted $agentNames | Where-Object { $_.SideIndicator -eq "<=" }
+    if ($agentsRaw.IndexOf("mobile-competitive") -ge 0) {
+        Write-Host "  [MISSING] AGENTS.md still routes a phantom skill name" -ForegroundColor Red
+        $script:ERRORS++
+    }
+
+    if (-not $agentExtra -and -not $agentMissing) {
+        Write-Host "  [OK] AGENTS.md `$seagull-* names match skill directories" -ForegroundColor Green
+    } else {
+        Write-Host "  [MISSING] AGENTS.md skill names drift from skills/" -ForegroundColor Red
+        if ($agentExtra) { Write-Host "           extra: $($agentExtra.InputObject -join ', ')" -ForegroundColor Red }
+        if ($agentMissing) { Write-Host "           missing: $($agentMissing.InputObject -join ', ')" -ForegroundColor Red }
+        $script:ERRORS++
+    }
+
+    $pluginPath = Join-Path $scriptPath "plugins\seagull\.codex-plugin\plugin.json"
+    $pluginRaw = [System.IO.File]::ReadAllText($pluginPath, [System.Text.Encoding]::UTF8)
+    if ($pluginRaw.IndexOf('"version": "1.2.0"') -ge 0 -and $pluginRaw.IndexOf("mcpServers") -lt 0) {
+        Write-Host "  [OK] plugin.json is 1.2.0 and has no MCP servers" -ForegroundColor Green
+    } else {
+        Write-Host "  [MISSING] plugin.json version or MCP field wrong" -ForegroundColor Red
         $script:ERRORS++
     }
 

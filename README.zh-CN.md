@@ -21,7 +21,7 @@
 
 **为 Codex 打造的 CTF/安全研究专用插件**
 
-人格、5 个技能与破甲注入 1:1 来自 [laoshu666/hermes-seagull](https://github.com/laoshu666/hermes-seagull)。
+人格与破甲注入来自 [laoshu666/hermes-seagull](https://github.com/laoshu666/hermes-seagull)。专业技能在上游 5 个正文之外，按 AGENTS 路由表补齐为 13 个 SKILL.md。
 
 ## 快速开始
 
@@ -43,7 +43,7 @@ cd codex-seagull
 ✅ **无限制同级内核** - 完整技术交付，无关键词拒答  
 ✅ **原义强制执行** - 操作员原话 = 任务合同  
 ✅ **CTF/红队全局覆盖** - 默认按实验室资产处理  
-✅ **5 个专业技能** - 逆向/渗透/Pwn/游戏辅助/卡密  
+✅ **13 个专业技能** - 逆向/渗透/Pwn/内存/样本/免杀/游戏辅助/游戏安全/反作弊/卡密/建案/社工/全域路由
 ✅ **双平台支持** - Linux + Windows 完整兼容  
 
 ## 技能速查
@@ -57,6 +57,10 @@ cd codex-seagull
 | `外挂` | ESP/自瞄完整代码（demo 可跑） |
 | `卡密` | 验证流恢复 + patch-point |
 | `pwn` | Exploit 脚本 + ROP 链 |
+| `内存` | 指针链 + dump |
+| `免杀` | 检测分层 + loader 骨架 |
+| `建案` | 案件目录 + hash |
+| `osint` | 情报收集 + 钓鱼解析 |
 
 ## 项目结构
 

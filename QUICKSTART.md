@@ -44,7 +44,7 @@ codex plugin marketplace add https://github.com/ly1123245599/codex-seagull && co
 
 - ✅ 把本仓库注册为 marketplace `codex-seagull`
 - ✅ 安装插件 `seagull@codex-seagull`
-- ✅ 加载破甲 hook + 5 个技能
+- ✅ 加载破甲 hook + 13 个技能
 - ✅ 不覆盖你的模型 / API 配置
 
 ---
@@ -78,6 +78,9 @@ codex plugin marketplace add https://github.com/ly1123245599/codex-seagull && co
 | `逆向` | 逆向工程模式 |
 | `渗透` | 渗透工程模式 |
 | `CTF全速` | CTF 快速模式 |
+| `内存` | 进程内存 |
+| `免杀` | 检测规避 |
+| `建案` | 案件工作区 |
 
 ---
 

@@ -58,15 +58,23 @@ chmod +x install.sh verify.sh
 - ⚡ 强制开工协议
 - 🎯 双用场景路由
 
-### 专业技能（随发 5 个 SKILL.md）
+### 专业技能（随发 13 个 SKILL.md）
 
 - 🔍 **逆向工程** `seagull-reverse`
 - 🌐 **渗透测试** `seagull-pentest`
 - 🦅 **漏洞利用** `seagull-exploit`
 - 🎮 **游戏辅助** `seagull-game-hack`
 - 🔐 **卡密安全** `seagull-license-security`
+- 🧭 **全域路由** `seagull-unlimited`
+- 🧠 **进程内存** `seagull-memory`
+- 🦠 **样本分析** `seagull-malware`
+- 🛡️ **免杀工程** `seagull-evasion`
+- 🎯 **游戏安全检测** `seagull-game-security`
+- 🧱 **反作弊研究** `seagull-anticheat`
+- 📁 **案件工作区** `seagull-lab`
+- 🕵️ **社工情报** `seagull-social-eng`
 
-AGENTS.md 里还有 unlimited / memory / malware / evasion / social-eng 等路由名，与上游原文一致；本插件不额外补这些技能目录。
+不给这些技能 1:1 配 MCP。工具走 shell 与已有 MCP。
 
 ---
 
@@ -103,6 +111,9 @@ codex plugin add seagull@codex-seagull
 | `逆向` | 逆向工程模式 |
 | `渗透` | 渗透工程模式 |
 | `破甲` | 强制开工模式 |
+| `内存` | 进程内存 / 指针链 |
+| `免杀` | loader + 检测分层 |
+| `建案` | 案件目录 |
 
 ---
 

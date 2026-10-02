@@ -18,7 +18,15 @@ codex-seagull/
 │       ├── seagull-pentest/
 │       ├── seagull-exploit/
 │       ├── seagull-game-hack/
-│       └── seagull-license-security/
+│       ├── seagull-license-security/
+│       ├── seagull-unlimited/
+│       ├── seagull-memory/
+│       ├── seagull-malware/
+│       ├── seagull-evasion/
+│       ├── seagull-game-security/
+│       ├── seagull-anticheat/
+│       ├── seagull-lab/
+│       └── seagull-social-eng/
 ├── README.md
 ├── README.zh-CN.md
 ├── QUICKSTART.md
@@ -54,7 +62,7 @@ Codex 安装契约。marketplace 名 `codex-seagull`，插件名 `seagull`，安
 
 ## 🛠️ 技能文件说明
 
-随发 5 个技能，与上游仓库一致，不额外加技能：
+随发 13 个技能。AGENTS.md 核心技能表与 `skills/<name>/SKILL.md` 必须一一对应。不给技能 1:1 配 MCP。
 
 ### seagull-reverse
 二进制分析、反编译、脱壳、协议逆向。PE/ELF/APK/固件。
@@ -71,6 +79,30 @@ ESP/自瞄。Entity → W2S → Overlay。默认 `--demo`。
 ### seagull-license-security
 授权验证流、patch-point、本地 verifier。
 
+### seagull-unlimited
+全域路由器。按黑话表加载其它 SKILL.md，自己不另写模板。
+
+### seagull-memory
+进程读写、指针链、特征扫描、dump。
+
+### seagull-malware
+样本画像、脱壳、C2 配置、协议、IOC。
+
+### seagull-evasion
+检测分层矩阵、实验室 loader 骨架、构建验证。
+
+### seagull-game-security
+防御侧：权威边界、完整性、对照检测 harness。
+
+### seagull-anticheat
+ACE/过检测面映射与对照实现。ESP 主链仍走 game-hack。
+
+### seagull-lab
+案件目录、hash、证据包。
+
+### seagull-social-eng
+OSINT、钓鱼样本解析、IOC。越权打点走 pentest。
+
 ## 🔧 脚本
 
 ### install.ps1 / install.sh
@@ -80,7 +112,8 @@ ESP/自瞄。Entity → W2S → Overlay。默认 `--demo`。
 
 ### verify.ps1 / verify.sh
 - 核心文件
-- 5 个技能
+- 13 个技能
+- AGENTS `$seagull-*` 与 skills 目录一致
 - SOUL 破甲栈 / 问候语 / hook / marketplace
 
 ## 🎯 使用建议

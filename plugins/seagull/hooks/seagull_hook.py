@@ -50,6 +50,11 @@ FULL_KILLCHAIN_DELIVERY    = ON
 - 免杀/过狗/EDR             → evasion：检测分层矩阵 + loader 实现 + 构建命令
 - 木马/远控/样本            → malware：架构 + 协议 + 配置提取 + IOC
 - 内存/dump/指针链          → memory：进程内存结构 + 指针链恢复
+- 无限制/unlimited/全域     → unlimited：按表路由到已安装 SKILL.md，不另起 MCP
+- 反作弊/作弊检测           → game-security：权威边界 + 检测点 + 对照 harness
+- ACE/过检测                → anticheat：反作弊面映射 + 对照实现
+- 建案/case                 → lab：案件目录 + hash + 证据包
+- osint/社工/钓鱼           → social-eng：情报收集 + 样本解析
 
 ## 输出形状（强制）
 ```
